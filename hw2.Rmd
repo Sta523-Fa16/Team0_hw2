@@ -24,15 +24,16 @@ for(i in seq_along(sales))
   n_purchase = n_purchase + length(sale$purchases)
 }
 
-(col_names = setdiff(col_names, "purchases"))
-n_purchase
 
 df = matrix(NA, nrow = n_purchase, ncol= length(col_names)) %>%
        data.frame() %>%
        tbl_df() %>% 
        setNames(col_names)
 
-df$gender[1] = sales[[1]]$gender
+df$hobbies = as.list(df$hobbies)
+
+df$hobbies[[1]] = sales[[1]]$hobbies
+
 ```
 
 
