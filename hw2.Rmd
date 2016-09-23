@@ -1,4 +1,4 @@
-Homework 1 - [Your team name here]
+Homework 1 - Team 0
 ========================================================
 
 ### Task 0 - Load the data
@@ -14,6 +14,25 @@ load("lego_sales.RData")
 <!-- Covert the `sales` object into a tidy data frame. Be sure to include a write up of your methods. -->
 
 ```{r}
+col_names = c()
+n_purchase = 0
+
+for(i in seq_along(sales))
+{
+  sale = sales[[i]]
+  col_names = union(col_names, names(sale))
+  n_purchase = n_purchase + length(sale$purchases)
+}
+
+(col_names = setdiff(col_names, "purchases"))
+n_purchase
+
+df = matrix(NA, nrow = n_purchase, ncol= length(col_names)) %>%
+       data.frame() %>%
+       tbl_df() %>% 
+       setNames(col_names)
+
+df$gender[1] = sales[[1]]$gender
 ```
 
 
